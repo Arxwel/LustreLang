@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Author:	 Romain PASDELOUP <romain.pasdeloup@protonmail.com>
+		 Copyright (C) 2018
+	License: GNU General Public License v3.0 <https://www.gnu.org/licenses/gpl-3.0.en.html>
+-->
+<language id="lustre" name="Lustre" version="2.0" _section="Source">
+  <metadata>
+    <property name="mimetypes">text/x-lus</property>
+    <property name="globs">*.lus</property>
+    <property name="line-comment-start" >--</property>
+    <property name="block-comment-start">\*</property>
+    <property name="block-comment-end">\*</property>
+  </metadata>
+
+	<styles>
+		<style id="comment"           name="Comment"                   map-to="def:comment"/>
+		<style id="string"            name="String"                    map-to="def:string"/>
+		<style id="external"          name="External"                  map-to="def:preprocessor"/>
+		<style id="declaration"       name="Declaration"               map-to="def:type"/>
+		<style id="storage-class"     name="Storage Class"             map-to="def:type"/>
+		<style id="keyword"           name="Keyword"                   map-to="def:keyword"/>
+		<style id="operator" 	      name="Operator"		       map-to="def:operator"/>
+		<style id="boolean"           name="Boolean value"             map-to="def:boolean"/>
+		<style id="number"            name="Number"                    map-to="def:decimal"/>
+		<style id="type"              name="Data Type"                 map-to="def:type"/>
+		<style id="floating-point"    name="Floating point number"     map-to="def:floating-point"/>
+		<style id="decimal"           name="Decimal number"            map-to="def:decimal"/>
+		<style id="statement"         name="Statement"                 map-to="def:statement"/>
+	</styles>
+	<definitions>
+
+		<context id="line-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check">
+      			<start>--</start>
+      			<include>
+				<context ref="def:in-comment"/>
+      			</include>
+		</context>
+
+		<context id="block-comment" style-ref="comment" class-disabled="no-spell-check">
+      			<start>\*</start>
+      			<end>\*</end>
+      			<include>
+				<context ref="def:in-comment"/>
+      			</include>
+		</context>
+
+		<context id="float" style-ref="floating-point">
+		      <match extended="true">
+			(?&lt;![\w\.])
+			((\.[0-9]+ | [0-9]+\.[0-9]*) ([Ee][+-]?[0-9]*)? |
+			 ([0-9]+[Ee][+-]?[0-9]*))
+			[fFlL]?
+			(?![\w\.])
+		      </match>
+		</context>
+
+		<context id="decimal" style-ref="decimal">
+		      <match extended="true">
+			(?&lt;![\w\.])
+			(0|[1-9][0-9]*)[uUlL]*
+			(?![\w\.])
+		      </match>
+		</context>
+
+		<context id="strings" style-ref="string" end-at-line-end="true">
+      			<start>"</start>
+      			<end>"</end>
+		</context>
+
+		<context id="declarations" style-ref="keyword">
+			<keyword>node</keyword>
+			<keyword>function</keyword>
+			<keyword>type</keyword>
+			<keyword>const</keyword>
+		</context>
+
+		<context id="pack" style-ref="type">
+			<keyword>package</keyword>
+			<keyword>model</keyword>
+			<keyword>provides</keyword>
+			<keyword>needs</keyword>
+			<keyword>body</keyword>
+			<keyword>end</keyword>
+			<keyword>uses</keyword>
+		</context>
+
+		<context id="statements" style-ref="statement">
+			<keyword>returns</keyword>
+			<keyword>var</keyword>
+			<keyword>let</keyword>
+			<keyword>tel</keyword>
+			<keyword>assert</keyword>
+		</context>
+
+		<context id="include" style-ref="external">
+			<keyword>include</keyword>
+		</context>
+
+		<context id="primitive-types" style-ref="type">
+			<keyword>bool</keyword>
+			<keyword>int</keyword>
+			<keyword>real</keyword>
+			<keyword>map</keyword>
+			<keyword>red</keyword>
+			<keyword>fill</keyword>
+			<keyword>struct</keyword>
+			<keyword>enum</keyword>
+		</context>
+
+		<context id="operator" style-ref="operator">
+			<keyword>div</keyword>
+			<keyword>mod</keyword>
+			<keyword>pre</keyword>
+			<keyword>current</keyword>
+			<keyword>when</keyword>
+			<keyword>and</keyword>
+			<keyword>or</keyword>
+			<keyword>not</keyword>
+			<keyword>xor</keyword>
+			<keyword>nor</keyword>
+		</context>
+
+		<context id="storage-class" style-ref="storage-class">
+			<keyword>extern</keyword>
+			<keyword>unsafe</keyword>
+		</context>
+
+		<context id="flow" style-ref="keyword">
+			<keyword>if</keyword>
+			<keyword>then</keyword>
+			<keyword>else</keyword>
+			<keyword>case</keyword>
+			<keyword>goto</keyword>
+		</context>
+
+		<context id="boolean" style-ref="boolean">
+			<keyword>false</keyword>
+			<keyword>true</keyword>
+		</context>
+
+		<context id="lustre" class="no-spell-check">
+		      <include>
+			<context ref="line-comment"/>
+			<context ref="block-comment"/>
+			<context ref="decimal"/>
+			<context ref="float"/>
+			<context ref="strings"/>
+			<context ref="declarations"/>
+			<context ref="statements"/>
+			<context ref="storage-class"/>
+			<context ref="operator"/>
+			<context ref="boolean"/>
+			<context ref="flow"/>
+			<context ref="include"/>
+			<context ref="primitive-types"/>
+		      </include>
+		</context>
+	</definitions>
+</language>
