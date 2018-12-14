@@ -9,8 +9,8 @@
     <property name="mimetypes">text/x-lus</property>
     <property name="globs">*.lus</property>
     <property name="line-comment-start" >--</property>
-    <property name="block-comment-start">\*</property>
-    <property name="block-comment-end">\*</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
   </metadata>
 
 	<styles>
@@ -38,8 +38,8 @@
 		</context>
 
 		<context id="block-comment" style-ref="comment" class-disabled="no-spell-check">
-      			<start>\*</start>
-      			<end>\*</end>
+      			<start>/*</start>
+      			<end>*/</end>
       			<include>
 				<context ref="def:in-comment"/>
       			</include>
