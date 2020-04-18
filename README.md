@@ -1,7 +1,7 @@
 # LustreLang
-Gedit Syntax Highlighting for Lustre.
+Gtksourceview language specifications for Lustre.
 
-This is basically a .lang file that can be used to highlight [Lustre Language](http://www-verimag.imag.fr/The-Lustre-Programming-Language-and?lang=en) on Gedit.
+This is basically a .lang file that can be used to highlight [Lustre Language](http://www-verimag.imag.fr/The-Lustre-Programming-Language-and?lang=en) on any software relying on Gtksourceview definitions (Gedit, Pluma, ...).
 
 ## Tutorial
 1. Download the ```lustre.lang``` file
@@ -10,4 +10,3 @@ This is basically a .lang file that can be used to highlight [Lustre Language](h
 ```sh
 sudo mv lustre.lang /usr/share/gtksourceview-3.0/language-specs/lustre.lang
 ```
-4. Close and reopen Gedit
